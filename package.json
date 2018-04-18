@@ -1,0 +1,23 @@
+{
+  "name": "adf-leads",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:fetch-auto/adf-leads.git",
+  "author": "Fetch Auto <support@fetchauto.ca>",
+  "license": "MIT",
+  "dependencies": {
+    "luxon": "~1.0.0",
+    "xmlbuilder": "~9.0.7"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/eslint '**/*.js' --fix"
+  },
+  "devDependencies": {
+    "eslint": "~4.19.1",
+    "eslint-config-standard": "~11.0.0",
+    "eslint-plugin-dependencies": "~2.4.0",
+    "eslint-plugin-import": "~2.11.0",
+    "eslint-plugin-node": "~6.0.1",
+    "eslint-plugin-standard": "~3.0.1"
+  }
+}

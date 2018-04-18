@@ -1,0 +1,23 @@
+extends:
+    - eslint:recommended
+rules:
+    no-useless-escape: 1
+    eqeqeq: 2
+    no-restricted-globals:
+      - 2
+      - Promise
+    semi: 2
+    quotes:
+      - 2
+      - double
+    dependencies/case-sensitive: 2
+    no-console: 0
+parserOptions:
+    ecmaVersion: 6
+    sourceType: module
+    ecmaFeatures:
+      experimentalObjectRestSpread: true
+env:
+    node: true
+plugins:
+    - dependencies
