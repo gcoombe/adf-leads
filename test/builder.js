@@ -63,7 +63,7 @@ const expectedXML = `<?xml version="1.0"?><?ADF VERSION="1.0"?><adf><prospect><i
             years_at_employer: 2
             monthly_income: $4,000
             rent_or_own: own
-            monthly_housing_payment: $1000
+            monthly_housing_payment: $1,000
             months_at_residence: 2
             years_at_residence: 2
             date_of_birth: 1988-02-19

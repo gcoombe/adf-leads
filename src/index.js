@@ -48,20 +48,17 @@ const addCustomer = (customer, builder) => {
         .addADFNodeAndUp("phone", customer.contact.phone);
     addAddress(customer.contact.address, builder).up().up();
 
-    builder.ele("comments")
-        .dat(`
-            employer: Telus
-            employment_status: Full time
-            occupation: Customer service rep
-            months_at_employer: 1
-            years_at_employer: 2
-            monthly_income: $4,000
-            rent_or_own: own
-            monthly_housing_payment: $1000
-            months_at_residence: 2
-            years_at_residence: 2
-            date_of_birth: 1988-02-19
-          `).up();
+    if (customer.commentsData){
+        let commentsStringBuilder = '';
+        for(const [key, value] of Object.entries(customer.commentsData)) {
+            commentsStringBuilder += `${key}: ${value}
+            `;
+        }
+
+        builder.ele("comments")
+            .dat(commentsStringBuilder).up();
+    }
+
     return builder;
 };
 
