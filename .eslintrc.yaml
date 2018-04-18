@@ -19,5 +19,6 @@ parserOptions:
       experimentalObjectRestSpread: true
 env:
     node: true
+    mocha: true
 plugins:
     - dependencies

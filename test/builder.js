@@ -1,7 +1,7 @@
 const {getXmlString} = require("../src");
 const chai = require("chai");
-const expect  = require('chai').expect;
-const chaiXml = require('chai-xml');
+const expect  = require("chai").expect;
+const chaiXml = require("chai-xml");
 
 chai.use(chaiXml);
 

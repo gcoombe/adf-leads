@@ -49,7 +49,7 @@ const addCustomer = (customer, builder) => {
     addAddress(customer.contact.address, builder).up().up();
 
     if (customer.commentsData){
-        let commentsStringBuilder = '';
+        let commentsStringBuilder = "";
         for(const [key, value] of Object.entries(customer.commentsData)) {
             commentsStringBuilder += `${key}: ${value}
             `;
