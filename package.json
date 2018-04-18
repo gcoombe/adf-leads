@@ -1,6 +1,6 @@
 {
   "name": "adf-leads",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "src/index.js",
   "repository": "git@github.com:fetch-auto/adf-leads.git",
   "author": "Fetch Auto <support@fetchauto.ca>",
