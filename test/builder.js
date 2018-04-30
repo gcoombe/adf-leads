@@ -11,8 +11,9 @@ const testObj = {
         id: {val: 1234, source: "fetch-auto"},
         customer: {
             contact: {
-                name: {val: "Peter Smith"},
-                email: "support@fetchauto.ca",
+                firstName: "Peter",
+                lastName: "Smith",
+                email: "dealership.support@fetchautp.ca",
                 phone: {val: "6041234567", time: "afternoon"},
                 address: {
                     line1: "123 Main st.",
@@ -35,7 +36,7 @@ const testObj = {
                 date_of_birth: "1988-02-19"
             }
         },
-        vendor: {
+        provider: {
             name: "Fetch Auto",
             url: "https://fetchauto.ca",
             contact: {
@@ -51,11 +52,14 @@ const testObj = {
                 }
             }
 
+        },
+        vendor: {
+            name: "Test dealer"
         }
     }]
 };
 
-const expectedXML = `<?xml version="1.0"?><?ADF VERSION="1.0"?><adf><prospect><id source="fetch-auto">1234</id><requestdate>2018-04-12T16:30:20-07:00</requestdate><vehicle><year/><make/><model/></vehicle><customer><contact><name>Peter Smith</name><email>support@fetchauto.ca</email><phone time="afternoon">6041234567</phone><address><street line="1">123 Main st.</street><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V7Z5B6</postalcode><country>CA</country></address></contact><comments><![CDATA[
+const expectedXML = `<?xml version="1.0"?><?ADF VERSION="1.0"?><adf><prospect><id source="fetch-auto">1234</id><requestdate>2018-04-12T16:30:20-07:00</requestdate><vehicle><year/><make/><model/></vehicle><customer><contact><name part="first" type="individual">Peter</name><name type="individual" part="last">Smith</name><email>dealership.support@fetchautp.ca</email><phone time="afternoon">6041234567</phone><address><street line="1">123 Main st.</street><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V7Z5B6</postalcode><country>CA</country></address></contact><comments><![CDATA[
             employer: Telus
             employment_status: Full time
             occupation: Customer service rep
@@ -67,7 +71,7 @@ const expectedXML = `<?xml version="1.0"?><?ADF VERSION="1.0"?><adf><prospect><i
             months_at_residence: 2
             years_at_residence: 2
             date_of_birth: 1988-02-19
-          ]]></comments></customer><vendor><vendorname>Fetch Auto</vendorname><url>https://fetchauto.ca</url><contact><name>Drew Gamble</name><email>dealership.support@fetchautp.ca</email><phone>1-888-755-4460</phone><address><street line="1"/><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V6B0B1</postalcode><country>CA</country></address></contact></vendor></prospect></adf>`;
+          ]]></comments></customer><vendor><vendorname>Test dealer</vendorname><contact><name part="full" type="business">Test dealer</name></contact></vendor><provider><name type="business" part="full">Fetch Auto</name><url>https://fetchauto.ca</url><email>dealership.support@fetchautp.ca</email><phone>1-888-755-4460</phone><contact><name part="full" type="individual">Drew Gamble</name><email>dealership.support@fetchautp.ca</email><phone>1-888-755-4460</phone><address><street line="1"/><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V6B0B1</postalcode><country>CA</country></address></contact></provider></prospect></adf>`;
 
 
 describe("adf-leads", function () {

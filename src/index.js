@@ -18,7 +18,8 @@ const addProspect = (prospect, builder) => {
         .ele("model", "").up().up();
 
     addCustomer(prospect.customer, builder).up();
-    addProvider(prospect.vendor, builder).up();
+    addVendor(prospect.vendor, builder).up();
+    addProvider(prospect.provider, builder).up();
     return builder;
 
 };
@@ -43,9 +44,19 @@ const addCustomer = (customer, builder) => {
     builder = builder.ele("customer");
 
     builder.ele("contact")
-        .addADFNodeAndUp("name", customer.contact.name)
         .addADFNodeAndUp("email", customer.contact.email)
         .addADFNodeAndUp("phone", customer.contact.phone);
+
+    if (customer.contact.firstName) {
+        builder.addADFNodeAndUp("name", {val: customer.contact.firstName, part: "first", type: "individual"});
+    }
+    if (customer.contact.lastName) {
+        builder.addADFNodeAndUp("name", {val: customer.contact.lastName, part: "last", type: "individual"});
+    }
+    if (customer.contact.name) {
+        builder.addADFNodeAndUp("name", {val: customer.contact.name, part: "full", type: "individual"});
+    }
+
     addAddress(customer.contact.address, builder).up().up();
 
     if (customer.commentsData){
@@ -62,24 +73,37 @@ const addCustomer = (customer, builder) => {
     return builder;
 };
 
-const addProvider = (vendor, builder) => {
+const addVendor = (vendor, builder) => {
     builder.ele("vendor")
-        .addADFNodeAndUp("vendorname", vendor.name)
-        .addADFNodeAndUp("url", vendor.url);
+        .addADFNodeAndUp("vendorname", vendor.name);
 
+    builder.ele("contact")
+        .addADFNodeAndUp("name", {val: vendor.name, type: "business", part: "full"}).up();
 
-    return builder.ele("contact")
-        .addADFNodeAndUp("name", vendor.contact.name)
-        .addADFNodeAndUp("email", vendor.contact.email)
-        .addADFNodeAndUp("phone", vendor.contact.phone)
+    return builder;
+
+};
+
+const addProvider = (provider, builder) => {
+    builder.ele("provider")
+        .addADFNodeAndUp("name", {val: provider.name, type: "business", part: "full"})
+        .addADFNodeAndUp("email", provider.contact.email)
+        .addADFNodeAndUp("phone", provider.contact.phone)
+        .addADFNodeAndUp("url", provider.url);
+
+    builder.ele("contact")
+        .addADFNodeAndUp("name", {val: provider.contact.name, type: "individual", part: "full"})
+        .addADFNodeAndUp("email", provider.contact.email)
+        .addADFNodeAndUp("phone", provider.contact.phone)
         .ele("address")
-        .addADFNodeAndUp("street",{ line: 1}, vendor.contact.address.line1)
-        .addADFNodeAndUp("city", vendor.contact.address.city)
-        .addADFNodeAndUp("regioncode", vendor.contact.address.regioncode)
-        .addADFNodeAndUp("postalcode", vendor.contact.address.postalcode)
-        .addADFNodeAndUp("country", vendor.contact.address.country).up().up();
+        .addADFNodeAndUp("street",{ line: 1}, provider.contact.address.line1)
+        .addADFNodeAndUp("city", provider.contact.address.city)
+        .addADFNodeAndUp("regioncode", provider.contact.address.regioncode)
+        .addADFNodeAndUp("postalcode", provider.contact.address.postalcode)
+        .addADFNodeAndUp("country", provider.contact.address.country).up().up();
 
 
+    return builder;
 };
 
 const buildXml = obj => {
