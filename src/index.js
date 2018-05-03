@@ -43,9 +43,7 @@ const addAddress = (address, builder) => {
 const addCustomer = (customer, builder) => {
     builder = builder.ele("customer");
 
-    builder.ele("contact")
-        .addADFNodeAndUp("email", customer.contact.email)
-        .addADFNodeAndUp("phone", customer.contact.phone);
+    builder.ele("contact");
 
     if (customer.contact.firstName) {
         builder.addADFNodeAndUp("name", {val: customer.contact.firstName, part: "first", type: "individual"});
@@ -56,6 +54,9 @@ const addCustomer = (customer, builder) => {
     if (customer.contact.name) {
         builder.addADFNodeAndUp("name", {val: customer.contact.name, part: "full", type: "individual"});
     }
+
+    builder.addADFNodeAndUp("email", customer.contact.email)
+        .addADFNodeAndUp("phone", customer.contact.phone);
 
     addAddress(customer.contact.address, builder).up().up();
 
@@ -78,7 +79,8 @@ const addVendor = (vendor, builder) => {
         .addADFNodeAndUp("vendorname", vendor.name);
 
     builder.ele("contact")
-        .addADFNodeAndUp("name", {val: vendor.name, type: "business", part: "full"}).up();
+        .addADFNodeAndUp("name", {val: vendor.name, type: "business", part: "full"})
+        .ele("email", "").up().up();
 
     return builder;
 
@@ -87,9 +89,9 @@ const addVendor = (vendor, builder) => {
 const addProvider = (provider, builder) => {
     builder.ele("provider")
         .addADFNodeAndUp("name", {val: provider.name, type: "business", part: "full"})
+        .addADFNodeAndUp("url", provider.url)
         .addADFNodeAndUp("email", provider.contact.email)
-        .addADFNodeAndUp("phone", provider.contact.phone)
-        .addADFNodeAndUp("url", provider.url);
+        .addADFNodeAndUp("phone", provider.contact.phone);
 
     builder.ele("contact")
         .addADFNodeAndUp("name", {val: provider.contact.name, type: "individual", part: "full"})

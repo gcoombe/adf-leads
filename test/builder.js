@@ -71,7 +71,7 @@ const expectedXML = `<?xml version="1.0"?><?ADF VERSION="1.0"?><adf><prospect><i
             months_at_residence: 2
             years_at_residence: 2
             date_of_birth: 1988-02-19
-          ]]></comments></customer><vendor><vendorname>Test dealer</vendorname><contact><name part="full" type="business">Test dealer</name></contact></vendor><provider><name type="business" part="full">Fetch Auto</name><url>https://fetchauto.ca</url><email>dealership.support@fetchautp.ca</email><phone>1-888-755-4460</phone><contact><name part="full" type="individual">Drew Gamble</name><email>dealership.support@fetchautp.ca</email><phone>1-888-755-4460</phone><address><street line="1"/><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V6B0B1</postalcode><country>CA</country></address></contact></provider></prospect></adf>`;
+          ]]></comments></customer><vendor><vendorname>Test dealer</vendorname><contact><name part="full" type="business">Test dealer</name><email></email></contact></vendor><provider><name type="business" part="full">Fetch Auto</name><url>https://fetchauto.ca</url><email>dealership.support@fetchautp.ca</email><phone>1-888-755-4460</phone><contact><name part="full" type="individual">Drew Gamble</name><email>dealership.support@fetchautp.ca</email><phone>1-888-755-4460</phone><address><street line="1"/><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V6B0B1</postalcode><country>CA</country></address></contact></provider></prospect></adf>`;
 
 
 describe("adf-leads", function () {
