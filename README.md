@@ -1,5 +1,7 @@
 # adf-leads
 
+[![Build Status](https://travis-ci.org/fetch-auto/adf-leads.svg?branch=master)](https://travis-ci.org/fetch-auto/adf-leads)
+
 ### Purpose
 
 To generate xml auto leads in the adf format http://adfxml.info/adf_spec.pdf from js objects.
