@@ -9,6 +9,9 @@
     "luxon": "~1.0.0",
     "xmlbuilder": "~9.0.7"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint '**/*.js' --fix",
     "test": "./node_modules/.bin/mocha"
