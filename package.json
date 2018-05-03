@@ -10,7 +10,7 @@
     "xmlbuilder": "~9.0.7"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.6.0"
   },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint '**/*.js' --fix",

@@ -8,7 +8,7 @@ const addProspect = (prospect, builder) => {
         builder.addADFNodeAndUp("id", prospect.id);
     }
 
-    builder.ele("requestdate", DateTime.fromISO(prospect.requestDate).toISO({suppressMilliseconds: true})).up();
+    builder.ele("requestdate", DateTime.fromISO(prospect.requestDate, {zone: "utc"}).toISO({suppressMilliseconds: true})).up();
 
 
     //Adds empty vehicle to pass DTD validation

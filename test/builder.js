@@ -7,7 +7,7 @@ chai.use(chaiXml);
 
 const testObj = {
     prospects: [{
-        requestDate: "2018-04-12T16:30:20-07:00",
+        requestDate: "2018-04-12T16:30:20Z",
         id: {val: 1234, source: "fetch-auto"},
         customer: {
             contact: {
@@ -59,7 +59,7 @@ const testObj = {
     }]
 };
 
-const expectedXML = `<?xml version="1.0"?><?ADF VERSION="1.0"?><adf><prospect><id source="fetch-auto">1234</id><requestdate>2018-04-12T16:30:20-07:00</requestdate><vehicle><year/><make/><model/></vehicle><customer><contact><name part="first" type="individual">Peter</name><name type="individual" part="last">Smith</name><email>dealership.support@fetchautp.ca</email><phone time="afternoon">6041234567</phone><address><street line="1">123 Main st.</street><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V7Z5B6</postalcode><country>CA</country></address></contact><comments><![CDATA[
+const expectedXML = `<?xml version="1.0"?><?ADF VERSION="1.0"?><adf><prospect><id source="fetch-auto">1234</id><requestdate>2018-04-12T16:30:20Z</requestdate><vehicle><year/><make/><model/></vehicle><customer><contact><name part="first" type="individual">Peter</name><name type="individual" part="last">Smith</name><email>dealership.support@fetchautp.ca</email><phone time="afternoon">6041234567</phone><address><street line="1">123 Main st.</street><city>Vancouver</city><regioncode>BC</regioncode><postalcode>V7Z5B6</postalcode><country>CA</country></address></contact><comments><![CDATA[
             employer: Telus
             employment_status: Full time
             occupation: Customer service rep
