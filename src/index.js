@@ -1,5 +1,5 @@
 const XMLBuilder = require("./XMLBuilder");
-const {DateTime} = require("luxon");
+const { DateTime } = require("luxon");
 
 const addProspect = (prospect, builder) => {
     builder.ele("prospect");
@@ -8,7 +8,7 @@ const addProspect = (prospect, builder) => {
         builder.addADFNodeAndUp("id", prospect.id);
     }
 
-    builder.ele("requestdate", DateTime.fromISO(prospect.requestDate, {zone: "utc"}).toISO({suppressMilliseconds: true})).up();
+    builder.ele("requestdate", DateTime.fromISO(prospect.requestDate, { zone: "utc" }).toISO({ suppressMilliseconds: true })).up();
 
 
     //Adds empty vehicle to pass DTD validation
@@ -28,10 +28,10 @@ const addAddress = (address, builder) => {
 
     builder.ele("address");
 
-    builder.ele("street", {line: 1}, address.line1).up();
+    builder.ele("street", { line: 1 }, address.line1).up();
 
     if (address.line2) {
-        builder.ele("street", {line: 2}, address.line2);
+        builder.ele("street", { line: 2 }, address.line2);
     }
 
     return builder.addADFNodeAndUp("city", address.city)
@@ -46,13 +46,13 @@ const addCustomer = (customer, builder) => {
     builder.ele("contact");
 
     if (customer.contact.firstName) {
-        builder.addADFNodeAndUp("name", {val: customer.contact.firstName, part: "first", type: "individual"});
+        builder.addADFNodeAndUp("name", { val: customer.contact.firstName, part: "first", type: "individual" });
     }
     if (customer.contact.lastName) {
-        builder.addADFNodeAndUp("name", {val: customer.contact.lastName, part: "last", type: "individual"});
+        builder.addADFNodeAndUp("name", { val: customer.contact.lastName, part: "last", type: "individual" });
     }
     if (customer.contact.name) {
-        builder.addADFNodeAndUp("name", {val: customer.contact.name, part: "full", type: "individual"});
+        builder.addADFNodeAndUp("name", { val: customer.contact.name, part: "full", type: "individual" });
     }
 
     builder.addADFNodeAndUp("email", customer.contact.email)
@@ -60,9 +60,9 @@ const addCustomer = (customer, builder) => {
 
     addAddress(customer.contact.address, builder).up().up();
 
-    if (customer.commentsData){
+    if (customer.commentsData) {
         let commentsStringBuilder = "";
-        for(const [key, value] of Object.entries(customer.commentsData)) {
+        for (const [key, value] of Object.entries(customer.commentsData)) {
             commentsStringBuilder += `${key}: ${value}
             `;
         }
@@ -79,7 +79,7 @@ const addVendor = (vendor, builder) => {
         .addADFNodeAndUp("vendorname", vendor.name);
 
     builder.ele("contact")
-        .addADFNodeAndUp("name", {val: vendor.name, type: "business", part: "full"})
+        .addADFNodeAndUp("name", { val: vendor.contact && vendor.contact.name ? vendor.contact.name : vendor.name, type: "business", part: "full" })
         .ele("email", "").up().up();
 
     return builder;
@@ -88,17 +88,17 @@ const addVendor = (vendor, builder) => {
 
 const addProvider = (provider, builder) => {
     builder.ele("provider")
-        .addADFNodeAndUp("name", {val: provider.name, type: "business", part: "full"})
+        .addADFNodeAndUp("name", { val: provider.name, type: "business", part: "full" })
         .addADFNodeAndUp("url", provider.url)
         .addADFNodeAndUp("email", provider.contact.email)
         .addADFNodeAndUp("phone", provider.contact.phone);
 
     builder.ele("contact")
-        .addADFNodeAndUp("name", {val: provider.contact.name, type: "individual", part: "full"})
+        .addADFNodeAndUp("name", { val: provider.contact.name, type: "individual", part: "full" })
         .addADFNodeAndUp("email", provider.contact.email)
         .addADFNodeAndUp("phone", provider.contact.phone)
         .ele("address")
-        .addADFNodeAndUp("street",{ line: 1}, provider.contact.address.line1)
+        .addADFNodeAndUp("street", { line: 1 }, provider.contact.address.line1)
         .addADFNodeAndUp("city", provider.contact.address.city)
         .addADFNodeAndUp("regioncode", provider.contact.address.regioncode)
         .addADFNodeAndUp("postalcode", provider.contact.address.postalcode)
@@ -123,4 +123,4 @@ const getXmlString = obj => {
     return buildXml(obj).end();
 };
 
-module.exports = {buildXml, getXmlString};
+module.exports = { buildXml, getXmlString };
